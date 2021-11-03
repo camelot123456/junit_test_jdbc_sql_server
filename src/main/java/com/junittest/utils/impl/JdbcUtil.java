@@ -140,5 +140,32 @@ public class JdbcUtil<T> implements IJdbcUtil<T>{
 		}
 		return null;
 	}
+
+	@Override
+	public List<T> queryForList(String sql, IMapper<T> mapper, Object... params) throws SQLException {
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		List<T> lists = new ArrayList<T>();
+		try {
+			connection = getConnection();
+			statement = connection.prepareStatement(sql);
+			resultSet = statement.executeQuery();
+			setParameter(statement, params);
+			T model = null;
+			while (resultSet.next()) {
+				model = mapper.ObjectMapper(resultSet);
+				lists.add(model);
+			}
+			return lists;
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println("Truy van that bai!!");
+		} finally {
+			closeAllStream(resultSet, statement, connection);
+		}
+		return null;
+	}
 	
 }

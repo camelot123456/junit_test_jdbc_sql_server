@@ -17,4 +17,6 @@ public interface IProductRepository {
 	
 	public ProductModel findOneById(String id) throws SQLException;
 	
+	public List<ProductModel> search(String keyword) throws SQLException;
+	
 }

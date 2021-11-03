@@ -79,5 +79,11 @@ public class IProductServiceTest {
 		ProductModel productModel = ProductModel.builder().name("IPHONE").build();
 		assertEquals(productModel.getName(), productService.findById(id).getName());
 	}
+	
+	@Test
+	public void testSearch() throws SQLException{
+		String keyword = "SAMSUNG";
+		assertTrue(productService.search(keyword).size() > 0);
+	}
 
 }

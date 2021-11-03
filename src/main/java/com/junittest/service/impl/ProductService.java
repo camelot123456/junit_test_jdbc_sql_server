@@ -36,5 +36,11 @@ public class ProductService implements IProductService{
 		// TODO Auto-generated method stub
 		return productRepository.findOneById(id);
 	}
+
+	@Override
+	public List<ProductModel> search(String keyword) throws SQLException {
+		// TODO Auto-generated method stub
+		return productRepository.search(keyword);
+	}
 	
 }

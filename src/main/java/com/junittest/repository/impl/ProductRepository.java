@@ -60,6 +60,15 @@ public class ProductRepository extends JdbcUtil<ProductModel> implements IProduc
 		return queryForObject(sql, new ProductMapper(), params);
 	}
 
-	
-	
+	@Override
+	public List<ProductModel> search(String keyword) throws SQLException {
+		// TODO Auto-generated method stub
+		String sql = "select * from PRODUCTS where concat(quantity, ' b') like %?% "
+				+ "or id like %?% "
+				+ "or name like %?% "
+				+ "or concat(price, '') like %?%";
+		Object[] params = new Object[] {keyword, keyword, keyword, keyword};
+		return queryForList(sql, new ProductMapper(), params);
+	}
+
 }

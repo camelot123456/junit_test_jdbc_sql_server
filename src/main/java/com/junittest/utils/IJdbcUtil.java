@@ -9,6 +9,8 @@ public interface IJdbcUtil<T> {
 
 	public List<T> queryForList(String sql, IMapper<T> mapper) throws SQLException;
 	
+	public List<T> queryForList(String sql, IMapper<T> mapper, Object... params) throws SQLException;
+	
 	public int excuteUpdate(String sql, Object... params) throws SQLException;
 	
 	public T queryForObject(String sql, IMapper<T> mapper, Object... params) throws SQLException;
